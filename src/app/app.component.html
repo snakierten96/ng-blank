@@ -1,0 +1,32 @@
+<md-sidenav-layout fullscreen>
+
+  <md-sidenav class="md-whiteframe-4dp" #sidenav>
+      <md-nav-list></md-nav-list>
+  </md-sidenav>
+
+  <md-toolbar color="primary" class="md-whiteframe-4dp">
+    <button md-icon-button (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    App Title
+  </md-toolbar>
+
+  <div id="container" layout="column">
+    <div id="top" layout="row" flex="70">
+      <div flex="33"></div>
+      <div id="dining" layout="row" layout-wrap flex="66">
+        <div flex="50" *ngFor="let table of tables">
+          <md-card>
+            <md-card-header>
+              <md-card-title>Table {{ table }}</md-card-title>
+            </md-card-header>
+            <md-card-content></md-card-content>
+            <md-card-actions></md-card-actions>
+          </md-card>
+        </div>
+      </div>
+    </div>
+    <div id="bottom" layout="row" flex="30"></div>
+  </div>
+  
+</md-sidenav-layout>
