@@ -1,14 +1,16 @@
-import { BrowserModule }    from '@angular/platform-browser';
-import { NgModule }         from '@angular/core';
-import { FormsModule }      from '@angular/forms';
-import { HttpModule }       from '@angular/http';
-import { MaterialModule }   from '@angular/material';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { NgModule }             from '@angular/core';
+import { FormsModule }          from '@angular/forms';
+import { HttpModule }           from '@angular/http';
+import { MaterialModule }       from '@angular/material';
 
+// TODO: this needs to be a module import
 import { 
   LayoutDirective,
   LayoutWrapDirective,
   FlexDirective
 } from './shared';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -24,7 +26,9 @@ import { AppComponent } from './app.component';
     HttpModule,
     MaterialModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
