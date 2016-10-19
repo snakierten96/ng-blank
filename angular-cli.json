@@ -16,6 +16,8 @@
       "mobile": false,
       "styles": [
         "app-theme.scss",
+        "layout.scss",
+        "whiteframe.scss",
         "styles.css"
       ],
       "scripts": [],
