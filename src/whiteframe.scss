@@ -2,9 +2,13 @@ $shadow-key-umbra-opacity:      0.2 !default;
 $shadow-key-penumbra-opacity:   0.14 !default;
 $shadow-ambient-shadow-opacity: 0.12 !default;
 
+$wfBase: '.md-whiteframe';
+
 $opacity: $shadow-key-umbra-opacity,
           $shadow-key-penumbra-opacity,
           $shadow-ambient-shadow-opacity;
+
+$cutPoints: (1,4,7,10,13);
 
 // TODO: Calulate Umbra and Penumbra ratio to height dp
 $whiteframeSets: (
@@ -49,30 +53,18 @@ $whiteframeSets: (
   $output: ();
   
   @for $x from 1 through length($c) {
-    $j: join(0,nth($c,$x));
-    $output: append($output,append(mapPx($j),rgba(0,0,0,nth($opacity,$x))),comma)
+    $el: mapPx(join(0,nth($c,$x))) rgba(0,0,0,nth($opacity,$x));
+    $output: append($output, $el, comma);
   }
   
-  $selector: unquote('.md-whiteframe-#{$i}dp');
+  $selector: '#{$wfBase}-#{$i}dp';
+  $icut: index($cutPoints,$i);
+  @if($icut) {
+    $selector: append($selector, '#{$wfBase}-z#{$icut}', comma);
+  }
 
-  @if( $i == 1) {
-    $selector: append($selector,'.md-whiteframe-z1',comma);
-  }
-  @else if( $i == 4 ) {
-    $selector: append($selector, '.md-whiteframe-z2', comma)
-  }
-  @else if( $i == 7 ) {
-    $selector: append($selector, '.md-whiteframe-z3', comma)
-  }
-  @else if( $i == 10 ) {
-    $selector: append($selector, '.md-whiteframe-z4', comma)
-  }
-  @else if( $i == 13 ) {
-    $selector: append($selector, '.md-whiteframe-z5', comma)
-  }
-  
   #{$selector} {
-    box-shadow: unquote('#{$output} !default');
+    box-shadow: #{$output};
   }
   
 }
